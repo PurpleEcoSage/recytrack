@@ -86,11 +86,9 @@ const startServer = async () => {
     await testConnection();
     
     // Synchroniser les modèles avec la base de données
-    // En production, utilisez les migrations au lieu de sync
-    if (process.env.NODE_ENV !== 'production') {
-      await sequelize.sync({ alter: true });
-      console.log('✅ Modèles synchronisés avec la base de données');
-    }
+    // alter: true met à jour les tables existantes sans les supprimer
+    await sequelize.sync({ alter: true });
+    console.log('✅ Modèles synchronisés avec la base de données');
     
     // Démarrer le serveur
     app.listen(PORT, () => {
