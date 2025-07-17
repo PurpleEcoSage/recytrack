@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: recytrack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: recytrack
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-recytrack2024}
+      POSTGRES_DB: recytrack
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - recytrack-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U recytrack"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend-setup
+      dockerfile: ../backend/Dockerfile
+    container_name: recytrack-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: recytrack
+      DB_USER: recytrack
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-recytrack2024}
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost}
+    volumes:
+      - ./backend-setup/uploads:/app/uploads
+      - ./backend-setup/logs:/app/logs
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - recytrack-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: ${API_URL:-http://localhost:5000/api}
+    container_name: recytrack-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+    networks:
+      - recytrack-network
+
+  # Backup service for PostgreSQL
+  backup:
+    image: prodrigestivill/postgres-backup-local:latest
+    container_name: recytrack-backup
+    restart: unless-stopped
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: recytrack
+      POSTGRES_USER: recytrack
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-recytrack2024}
+      SCHEDULE: "@daily"
+      BACKUP_KEEP_DAYS: 7
+      BACKUP_KEEP_WEEKS: 4
+      BACKUP_KEEP_MONTHS: 6
+      HEALTHCHECK_PORT: 8080
+    volumes:
+      - ./backups:/backups
+    depends_on:
+      - postgres
+    networks:
+      - recytrack-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  recytrack-network:
+    driver: bridge

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+		<meta name="theme-color" content="#000000" />
+		<meta name="description" content="RecyTrack - Gestion intelligente des déchets" />
+		<title>RecyTrack - Gestion des déchets</title>
+
+		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+		<!-- Fonts -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+		
+		<!-- Dark mode initialization script -->
+		<script>
+			// Prevent flash of unstyled content
+			if (localStorage.getItem('theme') === 'dark' || 
+				(!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
+	</head>
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div id="root"></div>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./start.sh:*)",
+      "Bash(systemctl status:*)",
+      "Bash(docker:*)",
+      "Bash(npm install:*)",
+      "Bash(sudo service:*)",
+      "Bash(chmod:*)",
+      "Bash(./start-local.sh:*)",
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(node server.js)",
+      "Bash(xdg-open:*)",
+      "Bash(./deploy-saas-simple.sh:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git config:*)"
+    ],
+    "deny": []
+  }
+}

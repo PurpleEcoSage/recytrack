@@ -1,0 +1,69 @@
+
+> frontend@0.1.0 start
+> react-scripts start
+
+(node:9394) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:9394) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled with warnings.
+
+[eslint] 
+src/components/NotificationPanel.js
+  Line 4:12:  'Check' is defined but never used  no-unused-vars
+
+src/components/Reports.js
+  Line 3:10:  'LineChart' is defined but never used  no-unused-vars
+  Line 3:21:  'Line' is defined but never used       no-unused-vars
+
+src/components/Settings.js
+  Line 3:22:   'SettingsIcon' is defined but never used  no-unused-vars
+  Line 3:65:   'Globe' is defined but never used         no-unused-vars
+  Line 3:78:   'Mail' is defined but never used          no-unused-vars
+  Line 3:84:   'Phone' is defined but never used         no-unused-vars
+  Line 3:101:  'MapPin' is defined but never used        no-unused-vars
+  Line 3:121:  'FileText' is defined but never used      no-unused-vars
+
+src/components/Users.js
+  Line 3:19:   'UsersIcon' is defined but never used     no-unused-vars
+  Line 3:30:   'Plus' is defined but never used          no-unused-vars
+  Line 3:99:   'Filter' is defined but never used        no-unused-vars
+  Line 3:107:  'MoreVertical' is defined but never used  no-unused-vars
+
+src/components/WasteManagement.js
+  Line 4:3:   'Trash2' is defined but never used  no-unused-vars
+  Line 5:21:  'Filter' is defined but never used  no-unused-vars
+  Line 6:25:  'Users' is defined but never used   no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/components/NotificationPanel.js
+  Line 4:12:  'Check' is defined but never used  no-unused-vars
+
+src/components/Reports.js
+  Line 3:10:  'LineChart' is defined but never used  no-unused-vars
+  Line 3:21:  'Line' is defined but never used       no-unused-vars
+
+src/components/Settings.js
+  Line 3:22:   'SettingsIcon' is defined but never used  no-unused-vars
+  Line 3:65:   'Globe' is defined but never used         no-unused-vars
+  Line 3:78:   'Mail' is defined but never used          no-unused-vars
+  Line 3:84:   'Phone' is defined but never used         no-unused-vars
+  Line 3:101:  'MapPin' is defined but never used        no-unused-vars
+  Line 3:121:  'FileText' is defined but never used      no-unused-vars
+
+src/components/Users.js
+  Line 3:19:   'UsersIcon' is defined but never used     no-unused-vars
+  Line 3:30:   'Plus' is defined but never used          no-unused-vars
+  Line 3:99:   'Filter' is defined but never used        no-unused-vars
+  Line 3:107:  'MoreVertical' is defined but never used  no-unused-vars
+
+src/components/WasteManagement.js
+  Line 4:3:   'Trash2' is defined but never used  no-unused-vars
+  Line 5:21:  'Filter' is defined but never used  no-unused-vars
+  Line 6:25:  'Users' is defined but never used   no-unused-vars
+
+webpack compiled with 1 warning
