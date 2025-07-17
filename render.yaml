@@ -1,0 +1,25 @@
+services:
+  # Backend API
+  - type: web
+    name: recytrack-api
+    runtime: node
+    repo: https://github.com/PurpleEcoSage/recytrack
+    branch: main
+    rootDir: backend-setup
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: recytrack-db
+          property: connectionString
+
+databases:
+  - name: recytrack-db
+    plan: free
+    databaseName: recytrack
+    user: recytrack
